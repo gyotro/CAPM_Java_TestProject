@@ -7,3 +7,6 @@ spring:
     initialization-mode: always
     hikari:
       maximum-pool-size: 1
+
+server:
+  port: 8082
