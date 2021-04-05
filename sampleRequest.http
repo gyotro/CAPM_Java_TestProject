@@ -1,5 +1,5 @@
 ### Submit Orders
-POST http://localhost:8080/odata/v4/teamcenter/Bolle
+POST http://localhost:8085/odata/v4/teamcenter/Bolle
 Content-Type: application/json
 
 [{ 
@@ -14,9 +14,41 @@ Content-Type: application/json
 }
 ]
 
+### Submit Single Bolla
+POST http://localhost:8085/odata/v4/teamcenter/Bolle
+Content-Type: application/json
+
+{ 
+    "Bolla" : "6ABolla",
+    "PartNumber" : "Parte1",
+    "Odl" : "890"
+}
+
+###
+POST http://localhost:8085/odata/v4/teamcenter/Bolle
+Content-Type: application/json
+
+{ 
+    "Bolla" : "7ABolla",
+    "PartNumber" : "Parte2",
+    "Odl" : "890"
+}
+
+
+### Update Single Bolla
+PUT http://localhost:8085/odata/v4/teamcenter/Bolle('6ABolla')
+Content-Type: application/json
+
+{ 
+    "Bolla" : "6ABolla",
+    "PartNumber" : "Parte2modifc",
+    "Odl" : "890"
+}
+
+
 
 ###  Se si vogliono fare più operazioni vanno separate dai 3 cancelletti ###
-GET  http://localhost:8080/odata/v4/teamcenter/Bolle
+GET  http://localhost:8085/odata/v4/teamcenter/Bolle
 
 
 ###  
