@@ -4,7 +4,8 @@ namespace sap.cap.teamcenter;
 *    con questa istruzione si dichiarano le strutture standard 
 *   che saranno utilizzate (ad esempio managed è un aspect)
 */ 
-using { managed } from '@sap/cds/common';  
+using { managed, sap } from '@sap/cds/common';  
+
 
 entity seriali_eventi : managed {
 
@@ -37,6 +38,8 @@ entity measures : managed {
             DataMisura              : Date
 
 }
+
+
 entity bolle : managed {
 
         key Bolla                   : String;
@@ -50,9 +53,41 @@ entity bolle : managed {
 
 }
 
+
 entity part_program : managed {
 
         key Bolla                   : String;
             PartProgram             : String;
             Machine                 : Time;
 }
+
+type bolla {
+
+            Bolla                   : String;
+            PartNumber              : String;
+            ActualStartTime         : Time;
+            ActualEndTime           : Time; 
+            Odl                     : String;
+            Seq                     : Integer;
+            OpType                  : String;
+            Cam                     : String;
+
+}
+
+
+entity ToTBolle : managed { item : array of { 
+
+            Bolla                   : String;
+            PartNumber              : String;
+            ActualStartTime         : Time;
+            ActualEndTime           : Time; 
+            Odl                     : String;
+            Seq                     : Integer;
+            OpType                  : String;
+            Cam                     : String;
+
+
+    } 
+ }
+
+

@@ -1,25 +1,32 @@
 ### Submit Orders
-POST http://localhost:8085/odata/v4/teamcenter/Bolle
+POST http://localhost:8085/odata/v4/teamcenter/ToTBolle
 Content-Type: application/json
 
-[{ 
-    "Bolla" : "4ABolla",
-    "PartNumber" : "Parte1",
-    "Odl" : "890"
-},
-{ 
-    "Bolla" : "5ABolla",
-    "PartNumber" : "Parte1",
-    "Odl" : "890"
-}
-]
-
+{ "item" :
+    [    
+        { 
+            "Bolla" : "3ABolla",
+            "PartNumber" : "Parte1",
+            "Odl" : "890"
+        },
+        { 
+            "Bolla" : "5ABolla",
+            "PartNumber" : "Parte1",
+            "Odl" : "890"
+        },
+        { 
+            "Bolla" : "10ABolla",
+            "PartNumber" : "Parte1",
+            "Odl" : "890"
+        }
+    ]
+ }   
 ### Submit Single Bolla
 POST http://localhost:8085/odata/v4/teamcenter/Bolle
 Content-Type: application/json
 
 { 
-    "Bolla" : "6ABolla",
+    "Bolla" : "11ABolla",
     "PartNumber" : "Parte1",
     "Odl" : "890"
 }
@@ -29,7 +36,7 @@ POST http://localhost:8085/odata/v4/teamcenter/Bolle
 Content-Type: application/json
 
 { 
-    "Bolla" : "7ABolla",
+    "Bolla" : "6ABolla",
     "PartNumber" : "Parte2",
     "Odl" : "890"
 }
