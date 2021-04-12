@@ -50,10 +50,6 @@ public class customHandler implements EventHandler {
     @Autowired
     PersistenceService db; // get access to the service
 
-//    @Autowired
-//    EventContext genericContext;
-
-
     private static Logger Log = LoggerFactory.getLogger(customHandler.class);
 
     //private Map<Object, Map<String, Object>> bolle = new HashMap<>();
@@ -145,18 +141,5 @@ public class customHandler implements EventHandler {
         context.setResult(context.getCqn().entries());
    //    context.setResult(result);
      }
-
-    private Object checkBolla(Bolle b) {
-        return null;
-    }
-    
-    /*
-    @PostMapping
-    public void registerStudent(@RequestBody List<Bolle> bolle) // gli diciamo di prendere lo student dalla request
-    {
-        Log.info("Log PostMapping.....");
-        Log.info("List of Bolle size: " + bolle.size());
-    }
-    */
     
 }
