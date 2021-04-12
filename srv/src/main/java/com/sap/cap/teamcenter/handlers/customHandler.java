@@ -136,9 +136,9 @@ public class customHandler implements EventHandler {
         List<Map<String, ?>> listOut = new ArrayList<>();
         listOut.add(mapOut);
         CqnInsert insertContextOut = Insert.into(ToTBolle_.class).entries(listOut);                 
-        Log.info("Exit On Create.....");
+        
         context.setCqn(insertContextOut);
         context.setResult(context.getCqn().entries());
-   //    context.setResult(result);
+        Log.info("Exit On Create.....");
      }
 }
