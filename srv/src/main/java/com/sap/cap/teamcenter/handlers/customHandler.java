@@ -141,5 +141,4 @@ public class customHandler implements EventHandler {
         context.setResult(context.getCqn().entries());
    //    context.setResult(result);
      }
-    
 }
