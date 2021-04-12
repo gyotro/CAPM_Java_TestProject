@@ -1,5 +1,6 @@
 package com.sap.cap.teamcenter.handlers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import cds.gen.adminservice.ToTBolleItem;
+import cds.gen.adminservice.ToTBolle_;
 import cds.gen.sap.cap.teamcenter.Bolle;
 import cds.gen.sap.cap.teamcenter.ToTBolle;
 import io.vavr.collection.Stream;
@@ -90,7 +92,8 @@ public class customHandler implements EventHandler {
        // Stream<ToTBolleItem> tot = stream(item).as(ToTBolleItem.class);
        List<ToTBolleItem> tot = stream(item).as(ToTBolleItem.class).collect(Collectors.toList());
        // bolle.forEach(b -> checkBolla(b));
-       String sCreatedAt = bolle.CREATED_AT.toString();
+       List<String> listBolleOK = new ArrayList<>();
+       //String sCreatedAt = bolle.CREATED_AT.toString();
        tot.forEach(
            bolla -> { 
                         String bollaNum = bolla.getBolla();
@@ -102,8 +105,10 @@ public class customHandler implements EventHandler {
 
                         Long rowCOunt = db.run(query).rowCount();
                         Log.info("RowCount " + rowCOunt); 
+                        
                         if(rowCOunt == 0)
                         {
+                            listBolleOK.add(bolla.getBolla());
                             Map<String, Object> singleBolla = new HashMap<>();
                             singleBolla.put("Bolla", bolla.getBolla());
                             singleBolla.put("PartNumber", bolla.getPartNumber());
@@ -125,10 +130,19 @@ public class customHandler implements EventHandler {
                             );
                         }
 
-
-       Log.info("Exit On Create.....");
-       context.setCqn(insert);
-       context.setResult(context.getCqn().entries());
+        // CqnInsert insertContextOut = context.getCqn().entries().stream().
+        List<Map<String, Object>> listContextIn = (List) context.getCqn().entries().get(0).get("item");
+        List<Map<String, Object>> listItemOut = listContextIn.stream()
+                                                                .filter(bolla -> listBolleOK.contains(bolla.get("Bolla").toString() ) )
+                                                                .collect(Collectors.toList());
+        Map<String, List> mapOut = new HashMap();
+        mapOut.put("item", listItemOut);
+        List<Map<String, ?>> listOut = new ArrayList<>();
+        listOut.add(mapOut);
+        CqnInsert insertContextOut = Insert.into(ToTBolle_.class).entries(listOut);                 
+        Log.info("Exit On Create.....");
+        context.setCqn(insertContextOut);
+        context.setResult(context.getCqn().entries());
    //    context.setResult(result);
      }
 

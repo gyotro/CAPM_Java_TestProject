@@ -5,12 +5,12 @@ Content-Type: application/json
 { "item" :
     [    
         { 
-            "Bolla" : "3ABolla",
+            "Bolla" : "1ABolla",
             "PartNumber" : "Parte1",
             "Odl" : "890"
         },
         { 
-            "Bolla" : "5ABolla",
+            "Bolla" : "2ABolla",
             "PartNumber" : "Parte1",
             "Odl" : "890"
         },
